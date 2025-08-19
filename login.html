@@ -35,7 +35,7 @@
 
       auth.signInWithEmailAndPassword(email, pass)
         .then(user => {
-          alert(" Muvaffaqiyatli login: " + user.user.email);
+          alert("Muvaffaqiyatli login: " + user.user.email);
           window.location.href = "welcome.html";
         })
         .catch(err => {
