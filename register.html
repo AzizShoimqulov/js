@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
-  <title>Ro‘yxatdan o‘tish</title>
+  <title>Royxatdan otish</title>
   <link rel="stylesheet" href="style.css">
 
   <!-- Firebase kutubxonalar -->
@@ -11,7 +11,7 @@
 </head>
 <body>
   <div class="box">
-    <h2>Ro‘yxatdan o‘tish</h2>
+    <h2>Royxatdan otish</h2>
     <input type="email" id="regEmail" placeholder="Email" required>
     <input type="password" id="regPass" placeholder="Parol" required>
     <button class="btn-green" onclick="register()">Register</button>
@@ -19,7 +19,6 @@
   </div>
 
   <script>
-    // ✅ Firebase konfiguratsiya
     const firebaseConfig = {
       apiKey: "AIzaSyA6iQgsC5__ohVOQydaMkVHKaspx8eE_Tw",
       authDomain: "web-app-4ac54.firebaseapp.com",
@@ -37,15 +36,15 @@
 
       auth.createUserWithEmailAndPassword(email, pass)
         .then(user => {
-          alert("✅ Ro‘yxatdan o‘tdingiz: " + user.user.email);
+          alert("Royxatdan otdingiz: " + user.user.email);
           window.location.href = "login.html";
         })
         .catch(err => {
           if (err.code === "auth/email-already-in-use") {
-            alert("❌ Bu email allaqachon mavjud. Login qiling!");
+            alert("Bu email allaqachon mavjud. Login qiling!");
             window.location.href = "login.html";
           } else {
-            alert("❌ Xato: " + err.message);
+            alert("Xato: " + err.message);
           }
         });
     }
