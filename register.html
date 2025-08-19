@@ -2,62 +2,52 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
-  <title>Register</title>
+  <title>Ro‘yxatdan o‘tish</title>
   <link rel="stylesheet" href="style.css">
 
   <!-- Firebase kutubxonalar -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
 <body>
   <div class="box">
     <h2>Ro‘yxatdan o‘tish</h2>
     <input type="email" id="regEmail" placeholder="Email" required>
     <input type="password" id="regPass" placeholder="Parol" required>
-    <input type="password" id="regPass2" placeholder="Parolni qayta kiriting" required>
-    <a href="./login.html">Login</a>
     <button class="btn-green" onclick="register()">Register</button>
+    <a href="login.html">Allaqachon akkauntim bor</a>
   </div>
 
   <script>
-    // 🔑 Firebase konfiguratsiyasi
+    // ✅ Firebase konfiguratsiya
     const firebaseConfig = {
       apiKey: "AIzaSyA6iQgsC5__ohVOQydaMkVHKaspx8eE_Tw",
       authDomain: "web-app-4ac54.firebaseapp.com",
       projectId: "web-app-4ac54",
-      storageBucket: "web-app-4ac54.appspot.com", // ✅ tuzatildi
+      storageBucket: "web-app-4ac54.firebasestorage.app",
       messagingSenderId: "1006563534990",
-      appId: "1:1006563534990:web:3a573d111fe073df65c1df",
-      measurementId: "G-9VKYF5CKNZ"
+      appId: "1:1006563534990:web:3a573d111fe073df65c1df"
     };
-
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
-    const db = firebase.firestore();
 
     function register() {
       let email = document.getElementById("regEmail").value;
       let pass = document.getElementById("regPass").value;
-      let pass2 = document.getElementById("regPass2").value;
-
-      if (pass !== pass2) {
-        alert("Parollar bir xil emas!");
-        return;
-      }
 
       auth.createUserWithEmailAndPassword(email, pass)
-        .then(cred => {
-          return db.collection("users").doc(cred.user.uid).set({
-            email: email,
-            createdAt: new Date()
-          });
-        })
-        .then(() => {
-          alert("✅ Ro‘yxatdan muvaffaqiyatli o‘tdingiz!");
+        .then(user => {
+          alert("✅ Ro‘yxatdan o‘tdingiz: " + user.user.email);
           window.location.href = "login.html";
         })
-        .catch(err => alert("❌ Xato: " + err.message));
+        .catch(err => {
+          if (err.code === "auth/email-already-in-use") {
+            alert("❌ Bu email allaqachon mavjud. Login qiling!");
+            window.location.href = "login.html";
+          } else {
+            alert("❌ Xato: " + err.message);
+          }
+        });
     }
   </script>
 </body>

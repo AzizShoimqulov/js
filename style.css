@@ -8,15 +8,12 @@ body {
   margin: 0;
 }
 .box {
-  background: rgb(200, 193, 193);
+  background: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   width: 300px;
   text-align: center;
-}
-h2, h1 {
-  margin-bottom: 20px;
 }
 input {
   width: 90%;
@@ -31,6 +28,7 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 10px;
 }
 button:hover {
   opacity: 0.9;
@@ -40,7 +38,7 @@ button:hover {
 .btn-red { background: #f44336; color: white; }
 a {
   display: block;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 10px;
   color: #2196F3;
+  text-decoration: none;
 }

@@ -2,45 +2,45 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
-  <title>Welcome</title>
+  <title>Xush kelibsiz</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Firebase -->
+  <!-- Firebase kutubxonalar -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 </head>
-<body onload="Welcome()">
+<body onload="welcomeUser()">
   <div class="box">
-    <h1>Xush kelibsiz!</h1>
+    <h1>Xush kelibsiz! 🎉</h1>
     <p id="welcome"></p>
     <button class="btn-red" onclick="logout()">Chiqish</button>
   </div>
 
   <script>
+    // ✅ Firebase konfiguratsiya
     const firebaseConfig = {
       apiKey: "AIzaSyA6iQgsC5__ohVOQydaMkVHKaspx8eE_Tw",
       authDomain: "web-app-4ac54.firebaseapp.com",
       projectId: "web-app-4ac54",
-      storageBucket: "web-app-4ac54.appspot.com",
+      storageBucket: "web-app-4ac54.firebasestorage.app",
       messagingSenderId: "1006563534990",
-      appId: "1:1006563534990:web:3a573d111fe073df65c1df",
-      measurementId: "G-9VKYF5CKNZ"
+      appId: "1:1006563534990:web:3a573d111fe073df65c1df"
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    function Welcome() {
-      let email = localStorage.getItem("userEmail");
-      if (email) {
-        document.getElementById("welcome").innerText = "Salom, " + email + "!";
-      } else {
-        window.location.href = "login.html";
-      }
+    function welcomeUser() {
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          document.getElementById("welcome").innerText = "Salom, " + user.email;
+        } else {
+          window.location.href = "login.html";
+        }
+      });
     }
 
     function logout() {
       auth.signOut().then(() => {
-        localStorage.removeItem("userEmail");
         window.location.href = "login.html";
       });
     }
