@@ -40,7 +40,7 @@
         })
         .catch(err => {
           if (err.code === "auth/email-already-in-use") {
-            alert("Bu email allaqachon mavjud. Login qiling!");
+            alert("Muffaqiyatli. Login qiling!");
             window.location.href = "login.html";
           } else {
             alert("Xato: " + err.message);
