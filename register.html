@@ -4,16 +4,61 @@
   <meta charset="UTF-8">
   <title>Register</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase kutubxonalar -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
 <body>
   <div class="box">
-    <h2>Royxatdan otish</h2>
-    <input type="text" id="regName" placeholder="Ismingiz" required>
+    <h2>Ro‘yxatdan o‘tish</h2>
+    <input type="email" id="regEmail" placeholder="Email" required>
     <input type="password" id="regPass" placeholder="Parol" required>
     <input type="password" id="regPass2" placeholder="Parolni qayta kiriting" required>
     <a href="./login.html">Login</a>
     <button class="btn-green" onclick="register()">Register</button>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    // 🔑 Firebase konfiguratsiyasi
+    const firebaseConfig = {
+      apiKey: "AIzaSyA6iQgsC5__ohVOQydaMkVHKaspx8eE_Tw",
+      authDomain: "web-app-4ac54.firebaseapp.com",
+      projectId: "web-app-4ac54",
+      storageBucket: "web-app-4ac54.appspot.com", // ✅ tuzatildi
+      messagingSenderId: "1006563534990",
+      appId: "1:1006563534990:web:3a573d111fe073df65c1df",
+      measurementId: "G-9VKYF5CKNZ"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    function register() {
+      let email = document.getElementById("regEmail").value;
+      let pass = document.getElementById("regPass").value;
+      let pass2 = document.getElementById("regPass2").value;
+
+      if (pass !== pass2) {
+        alert("Parollar bir xil emas!");
+        return;
+      }
+
+      auth.createUserWithEmailAndPassword(email, pass)
+        .then(cred => {
+          return db.collection("users").doc(cred.user.uid).set({
+            email: email,
+            createdAt: new Date()
+          });
+        })
+        .then(() => {
+          alert("✅ Ro‘yxatdan muvaffaqiyatli o‘tdingiz!");
+          window.location.href = "login.html";
+        })
+        .catch(err => alert("❌ Xato: " + err.message));
+    }
+  </script>
 </body>
 </html>

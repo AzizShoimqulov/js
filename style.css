@@ -15,11 +15,9 @@ body {
   width: 300px;
   text-align: center;
 }
-
 h2, h1 {
   margin-bottom: 20px;
 }
-
 input {
   width: 90%;
   padding: 8px;
@@ -27,7 +25,6 @@ input {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-
 button {
   padding: 10px;
   width: 100%;
@@ -35,28 +32,15 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-
 button:hover {
   opacity: 0.9;
 }
-
-.btn-green {
-  background: #4CAF50;
-  color: white;
-}
-
-.btn-blue {
-  background: #2196F3;
-  color: white;
-}
-
-.btn-red {
-  background: #f44336;
-  color: white;
-}
-a{
-    display: block;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    color: #2196F3;
+.btn-green { background: #4CAF50; color: white; }
+.btn-blue { background: #2196F3; color: white; }
+.btn-red { background: #f44336; color: white; }
+a {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #2196F3;
 }

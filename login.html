@@ -4,15 +4,44 @@
   <meta charset="UTF-8">
   <title>Login</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 </head>
 <body>
   <div class="box">
     <h2>Kirish</h2>
-    <input type="text" id="loginName" placeholder="Ism" required>
+    <input type="email" id="loginEmail" placeholder="Email" required>
     <input type="password" id="loginPass" placeholder="Parol" required>
     <a href="./register.html">Register</a>
     <button class="btn-blue" onclick="login()">Login</button>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA6iQgsC5__ohVOQydaMkVHKaspx8eE_Tw",
+      authDomain: "web-app-4ac54.firebaseapp.com",
+      projectId: "web-app-4ac54",
+      storageBucket: "web-app-4ac54.appspot.com",
+      messagingSenderId: "1006563534990",
+      appId: "1:1006563534990:web:3a573d111fe073df65c1df",
+      measurementId: "G-9VKYF5CKNZ"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function login() {
+      let email = document.getElementById("loginEmail").value;
+      let pass = document.getElementById("loginPass").value;
+
+      auth.signInWithEmailAndPassword(email, pass)
+        .then(user => {
+          localStorage.setItem("userEmail", email);
+          window.location.href = "welcome.html";
+        })
+        .catch(err => alert("❌ Xato: " + err.message));
+    }
+  </script>
 </body>
 </html>
