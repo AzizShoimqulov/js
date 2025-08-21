@@ -76,6 +76,3 @@ button {
   cursor: pointer;
   margin-top: 10px;
 }
-button:hover {
-  opacity: 0.9;
-}
