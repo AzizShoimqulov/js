@@ -1,4 +1,4 @@
-body {
+/* body {
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
@@ -45,6 +45,4 @@ button:hover {
 a {
   display: block;
   margin-top: 10px;
-  color: #2196F3;
-  text-decoration: none;
-}
+  color: #2
